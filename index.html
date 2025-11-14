@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iPhoneテストページ</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, #1a73e8, #0d47a1);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .phone-frame {
+      width: min(360px, 90vw);
+      border-radius: 40px;
+      padding: 24px 20px 32px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .notch {
+      width: 45%;
+      height: 26px;
+      background: rgba(0, 0, 0, 0.7);
+      margin: 0 auto 24px;
+      border-radius: 0 0 18px 18px;
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 4vw, 2.3rem);
+      margin: 0 0 16px;
+      text-align: center;
+      letter-spacing: 0.08em;
+    }
+
+    p {
+      margin: 0 0 12px;
+      line-height: 1.6;
+      text-align: center;
+      font-size: clamp(0.95rem, 3.2vw, 1.1rem);
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #34c759, #30d158);
+      color: #0b3d0b;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 18px;
+      box-shadow: 0 12px 24px rgba(52, 199, 89, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta-button:hover,
+    .cta-button:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 30px rgba(52, 199, 89, 0.45);
+    }
+
+    footer {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+  </style>
+</head>
+<body>
+  <main class="phone-frame" role="main">
+    <div class="notch" aria-hidden="true"></div>
+    <h1>テスト用ミニアプリ</h1>
+    <p>iPhone表示での見え方をチェックできるテストページです。</p>
+    <p>WindowsのVSCodeでも編集しやすいシンプルな構成にしています。</p>
+    <a class="cta-button" href="#" role="button">タップして確認</a>
+    <footer>レンタルサーバーへのデプロイ前にこのページで確認しましょう。</footer>
+  </main>
+</body>
+</html>
