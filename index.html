@@ -13,70 +13,148 @@
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(180deg, #1a73e8, #0d47a1);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
+      background: radial-gradient(circle at top, #3c8ce7 0%, #1e3c72 45%, #090a1a 100%);
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -20%;
+      background: conic-gradient(from 120deg at 20% 20%, rgba(100, 181, 246, 0.35), rgba(66, 165, 245, 0), rgba(206, 147, 216, 0.3), rgba(100, 181, 246, 0));
+      filter: blur(60px);
+      animation: glow 12s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes glow {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+      100% {
+        transform: rotate(12deg) scale(1.08);
+      }
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
     }
 
     .phone-frame {
       width: min(360px, 90vw);
       border-radius: 40px;
-      padding: 24px 20px 32px;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      padding: 28px 24px 36px;
+      background: linear-gradient(145deg, rgba(26, 35, 126, 0.78), rgba(63, 81, 181, 0.68));
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 25px 60px rgba(5, 6, 24, 0.45);
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phone-frame::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      pointer-events: none;
     }
 
     .notch {
-      width: 45%;
+      width: 46%;
       height: 26px;
-      background: rgba(0, 0, 0, 0.7);
-      margin: 0 auto 24px;
+      background: rgba(0, 0, 0, 0.72);
+      margin: 0 auto 22px;
       border-radius: 0 0 18px 18px;
     }
 
     h1 {
-      font-size: clamp(1.5rem, 4vw, 2.3rem);
-      margin: 0 0 16px;
+      font-size: clamp(1.6rem, 4.6vw, 2.4rem);
+      margin: 0 0 18px;
       text-align: center;
       letter-spacing: 0.08em;
     }
 
     p {
-      margin: 0 0 12px;
-      line-height: 1.6;
+      margin: 0 0 14px;
+      line-height: 1.7;
       text-align: center;
-      font-size: clamp(0.95rem, 3.2vw, 1.1rem);
+      font-size: clamp(0.95rem, 3.2vw, 1.15rem);
+    }
+
+    .features {
+      display: grid;
+      gap: 12px;
+      margin: 20px 0 24px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(13, 71, 161, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: clamp(0.85rem, 2.6vw, 1rem);
+    }
+
+    .features li::before {
+      content: "\2605";
+      display: inline-flex;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      background: rgba(52, 199, 89, 0.25);
+      color: #34c759;
+      font-size: 0.9rem;
+      flex-shrink: 0;
     }
 
     .cta-button {
-      display: inline-block;
-      padding: 14px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
       border-radius: 999px;
-      background: linear-gradient(90deg, #34c759, #30d158);
-      color: #0b3d0b;
+      background: linear-gradient(90deg, #34c759, #5fd17b);
+      color: #043b1c;
       font-weight: 600;
       text-decoration: none;
-      margin-top: 18px;
-      box-shadow: 0 12px 24px rgba(52, 199, 89, 0.4);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      margin-top: 4px;
+      box-shadow: 0 14px 28px rgba(52, 199, 89, 0.32);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, letter-spacing 0.2s ease;
+    }
+
+    .cta-button::after {
+      content: "\203A";
+      font-size: 1.4rem;
     }
 
     .cta-button:hover,
     .cta-button:focus {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 30px rgba(52, 199, 89, 0.45);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 36px rgba(52, 199, 89, 0.42);
+      letter-spacing: 0.03em;
     }
 
     footer {
-      margin-top: 28px;
+      margin-top: 26px;
       text-align: center;
       font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(233, 236, 255, 0.75);
     }
   </style>
 </head>
@@ -86,6 +164,11 @@
     <h1>テスト用ミニアプリ</h1>
     <p>iPhone表示での見え方をチェックできるテストページです。</p>
     <p>WindowsのVSCodeでも編集しやすいシンプルな構成にしています。</p>
+    <ul class="features" aria-label="確認ポイント">
+      <li>最新のSafari表示に近いラウンド角を再現</li>
+      <li>暗所でも見やすいコントラストを自動調整</li>
+      <li>レンタルサーバー公開前のデザイン最終確認に最適</li>
+    </ul>
     <a class="cta-button" href="#" role="button">タップして確認</a>
     <footer>レンタルサーバーへのデプロイ前にこのページで確認しましょう。</footer>
   </main>
