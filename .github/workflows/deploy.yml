@@ -1,0 +1,49 @@
+name: Deploy to ShinServer
+
+on:
+  push:
+    branches:
+      - main   # ★codeX / GitHub が使っているブランチ名に合わせる（main や master など）
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # リポジトリのコードを取得
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # SSH鍵を書き出し
+      - name: Setup SSH key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > key
+          chmod 600 key
+
+      # 接続テスト（最初はあった方が安心。慣れたら消してOK）
+      - name: Test SSH connection
+        run: |
+          ssh -v -i key \
+            -o UserKnownHostsFile=/dev/null \
+            -o StrictHostKeyChecking=no \
+            -p ${{ secrets.SSH_PORT }} \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo Connected"
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+
+      # rsyncでサーバーへデプロイ
+      - name: Deploy via rsync
+        run: |
+          rsync -auzrv \
+            --exclude '.git' \
+            --exclude '.github' \
+          ./iPhone/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}/ \
+            -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }}"
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
