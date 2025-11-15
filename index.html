@@ -6,171 +6,88 @@
   <title>iPhoneテストページ</title>
   <style>
     :root {
+      font-family: "Segoe UI", "Helvetica Neue", sans-serif;
       color-scheme: light dark;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
     body {
       margin: 0;
-      padding: 0;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
-      background: radial-gradient(circle at top, #3c8ce7 0%, #1e3c72 45%, #090a1a 100%);
-      overflow: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: -20%;
-      background: conic-gradient(from 120deg at 20% 20%, rgba(100, 181, 246, 0.35), rgba(66, 165, 245, 0), rgba(206, 147, 216, 0.3), rgba(100, 181, 246, 0));
-      filter: blur(60px);
-      animation: glow 12s ease-in-out infinite alternate;
-      z-index: 0;
-    }
-
-    @keyframes glow {
-      0% {
-        transform: rotate(0deg) scale(1);
-      }
-      100% {
-        transform: rotate(12deg) scale(1.08);
-      }
+      background: #f5f7fb;
+      color: #1f1f1f;
     }
 
     main {
-      position: relative;
-      z-index: 1;
-    }
-
-    .phone-frame {
-      width: min(360px, 90vw);
-      border-radius: 40px;
-      padding: 28px 24px 36px;
-      background: linear-gradient(145deg, rgba(26, 35, 126, 0.78), rgba(63, 81, 181, 0.68));
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 25px 60px rgba(5, 6, 24, 0.45);
-      backdrop-filter: blur(16px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .phone-frame::after {
-      content: "";
-      position: absolute;
-      inset: 12px;
+      width: min(360px, 92vw);
       border-radius: 32px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      pointer-events: none;
-    }
-
-    .notch {
-      width: 46%;
-      height: 26px;
-      background: rgba(0, 0, 0, 0.72);
-      margin: 0 auto 22px;
-      border-radius: 0 0 18px 18px;
+      padding: 32px 24px;
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(38, 56, 94, 0.12);
+      border: 1px solid rgba(31, 41, 55, 0.08);
     }
 
     h1 {
-      font-size: clamp(1.6rem, 4.6vw, 2.4rem);
-      margin: 0 0 18px;
+      margin: 0 0 16px;
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
       text-align: center;
-      letter-spacing: 0.08em;
     }
 
     p {
-      margin: 0 0 14px;
-      line-height: 1.7;
+      margin: 0 0 20px;
+      line-height: 1.6;
+      font-size: clamp(0.95rem, 3.4vw, 1.1rem);
       text-align: center;
-      font-size: clamp(0.95rem, 3.2vw, 1.15rem);
     }
 
-    .features {
+    ul {
+      list-style: none;
+      margin: 0 0 24px;
+      padding: 0;
       display: grid;
       gap: 12px;
-      margin: 20px 0 24px;
-      list-style: none;
-      padding: 0;
+      font-size: 0.95rem;
     }
 
-    .features li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 14px;
+    li {
+      padding: 12px 16px;
       border-radius: 16px;
-      background: rgba(13, 71, 161, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      font-size: clamp(0.85rem, 2.6vw, 1rem);
+      background: #eef2ff;
+      color: #1e3a8a;
     }
 
-    .features li::before {
-      content: "\2605";
-      display: inline-flex;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      align-items: center;
-      justify-content: center;
-      background: rgba(52, 199, 89, 0.25);
-      color: #34c759;
-      font-size: 0.9rem;
-      flex-shrink: 0;
-    }
-
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px 28px;
+    a {
+      display: block;
+      text-align: center;
+      padding: 14px 18px;
       border-radius: 999px;
-      background: linear-gradient(90deg, #34c759, #5fd17b);
-      color: #043b1c;
+      background: #2563eb;
+      color: #ffffff;
       font-weight: 600;
       text-decoration: none;
-      margin-top: 4px;
-      box-shadow: 0 14px 28px rgba(52, 199, 89, 0.32);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, letter-spacing 0.2s ease;
-    }
-
-    .cta-button::after {
-      content: "\203A";
-      font-size: 1.4rem;
-    }
-
-    .cta-button:hover,
-    .cta-button:focus {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 36px rgba(52, 199, 89, 0.42);
-      letter-spacing: 0.03em;
     }
 
     footer {
-      margin-top: 26px;
+      margin-top: 20px;
       text-align: center;
-      font-size: 0.75rem;
-      color: rgba(233, 236, 255, 0.75);
+      font-size: 0.8rem;
+      color: #6b7280;
     }
   </style>
 </head>
 <body>
-  <main class="phone-frame" role="main">
-    <div class="notch" aria-hidden="true"></div>
+  <main>
     <h1>テスト用ミニアプリ</h1>
-    <p>iPhone表示での見え方をチェックできるテストページです。</p>
-    <p>WindowsのVSCodeでも編集しやすいシンプルな構成にしています。</p>
-    <ul class="features" aria-label="確認ポイント">
-      <li>最新のSafari表示に近いラウンド角を再現</li>
-      <li>暗所でも見やすいコントラストを自動調整</li>
-      <li>レンタルサーバー公開前のデザイン最終確認に最適</li>
+    <p>iPhoneでの見え方を手早くチェックできる、シンプルなテストページです。</p>
+    <ul aria-label="確認ポイント">
+      <li>最新の表示比率を想定したレイアウト</li>
+      <li>WindowsのVSCodeでも編集しやすい構造</li>
+      <li>レンタルサーバー公開前の最終確認に最適</li>
     </ul>
-    <a class="cta-button" href="#" role="button">タップして確認</a>
-    <footer>レンタルサーバーへのデプロイ前にこのページで確認しましょう。</footer>
+    <a href="#" role="button">タップして確認</a>
+    <footer>レンタルサーバーへ公開する前に、このページでデザインを確認しましょう。</footer>
   </main>
 </body>
 </html>
